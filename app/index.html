@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TitanFinance</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{BASE_TAG}}
+
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/titan-finance.css">
+  </head>
+  <body>
+    <script>
+      window.TitanFinanceENV = {{ENV}};
+      window.EmberENV = window.TitanFinanceENV.EmberENV;
+    </script>
+    <script src="assets/vendor.js"></script>
+    <script src="assets/titan-finance.js"></script>
+    <script>
+      window.TitanFinance = require('titan-finance/app')['default'].create(TitanFinanceENV.APP);
+    </script>
+  </body>
+</html>

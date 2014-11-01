@@ -41,6 +41,15 @@
       </div>
 
       <h2 class="sub-header">Your holdings</h2>
+
+      <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon-search"></span>
+        {{input type="search" class="form-control" id="inputSSearch" value=symbol placeholder="Enter the stock symbol..."}}
+        <span class="input-group-btn">
+          <button type="button" {{bind-attr class=":btn :btn-success :btn-inline :glyphicon :glyphicon-remove-circle empty:disabled"}} {{action "search"}}></button>
+        </span>
+      </div>
+
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -53,7 +62,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each}}
+            {{#each filteredSyms}}
               <tr>
                 <td>{{symbol}}</td>
                 <td>{{number}}</td>

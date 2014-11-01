@@ -18,6 +18,9 @@ export default Ember.ArrayController.extend({
   actions: {
     view: function () {
       alert('TODO');
+    },
+    clear: function () {
+      this.set('symbols', '');
     }
   }
 });

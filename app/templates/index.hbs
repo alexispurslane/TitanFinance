@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <h1>Stock Search</h1>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="input-group">
+        {{input type="search" class="form-control" id="inputSearch" value=symbol placeholder="Enter the stock symbol..."}}
+        <span class="input-group-btn">
+          <button type="button" {{bind-attr class=":btn :btn-success :btn-inline empty:disabled"}} {{action "search"}}>Go</button>
+        </span>
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+  </div><!-- /.row -->
+</div>

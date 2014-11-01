@@ -7,7 +7,9 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">TitanFinance</a>
+    <a class="navbar-brand" href="#">
+      <img src="favicon.png" alt="TitanFinance"/>
+    </a>
   </div>
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-right">
@@ -26,15 +28,17 @@
           Settings
         {{/link-to}}
       {{/link-to}}
+      {{#link-to 'index' tagName="li" href=false}}
+        {{#link-to 'index' bubbles=false}}
+          Search
+        {{/link-to}}
+      {{/link-to}}
       {{#link-to 'help' tagName="li" href=false}}
         {{#link-to 'help' bubbles=false}}
           Help
         {{/link-to}}
       {{/link-to}}
     </ul>
-    <form class="navbar-form navbar-right">
-      <input type="text" class="form-control" placeholder="Search...">
-    </form>
   </div>
 </div>
 </nav>

@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="signin.css">
+<div class="container">
+  <form class="form-signin" role="div">
+    <h2 class="form-signin-heading">Sign In</h2>
+    {{input type="text" class="form-control" placeholder="Username" value=usernm}}
+    {{input type="password" class="form-control" placeholder="Password" value=pass}}
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="btn btn-success btn-block" {{action "signin"}}>Sign in</button>
+  </form>
+</div> <!-- /container -->

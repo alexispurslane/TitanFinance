@@ -9,6 +9,8 @@ Router.map(function() {
   this.route('profile');
   this.route('settings');
   this.route('help');
+  this.route('search');
+  this.route('signin', { path: '/' });
 });
 
 export default Router;

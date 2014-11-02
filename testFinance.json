@@ -1,0 +1,87 @@
+{
+    "ResultSet": {
+        "Query": "goo",
+        "Result": [
+            {
+                "exch": "NMS",
+                "exchDisp": "NASDAQ",
+                "name": "Google Inc.",
+                "symbol": "GOOG",
+                "type": "S",
+                "typeDisp": "Equity"
+            },
+            {
+                "exch": "NMS",
+                "exchDisp": "NASDAQ",
+                "name": "Google Inc.",
+                "symbol": "GOOGL",
+                "type": "S",
+                "typeDisp": "Equity"
+            },
+            {
+                "exch": "NMS",
+                "exchDisp": "NASDAQ",
+                "name": "The Goodyear Tire & Rubber Company",
+                "symbol": "GT",
+                "type": "S",
+                "typeDisp": "Equity"
+            },
+            {
+                "exch": "NYQ",
+                "exchDisp": "NYSE",
+                "name": "Goodrich Petroleum Corp.",
+                "symbol": "GDP",
+                "type": "S",
+                "typeDisp": "Equity"
+            },
+            {
+                "exch": "NYQ",
+                "exchDisp": "NYSE",
+                "name": "Dick's Sporting Goods Inc.",
+                "symbol": "DKS",
+                "type": "S",
+                "typeDisp": "Equity"
+            },
+            {
+                "exch": "NMS",
+                "exchDisp": "NASDAQ",
+                "name": "Big 5 Sporting Goods Corp.",
+                "symbol": "BGFV",
+                "type": "S",
+                "typeDisp": "Equity"
+            },
+            {
+                "exch": "NCM",
+                "exchDisp": "NASDAQ",
+                "name": "Real Goods Solar, Inc.",
+                "symbol": "RGSE",
+                "type": "S",
+                "typeDisp": "Equity"
+            },
+            {
+                "exch": "NMS",
+                "exchDisp": "NASDAQ",
+                "name": "Gladstone Commercial Corp.",
+                "symbol": "GOOD",
+                "type": "S",
+                "typeDisp": "Equity"
+            },
+            {
+                "exch": "NCM",
+                "exchDisp": "NASDAQ",
+                "name": "Good Times Restaurants Inc.",
+                "symbol": "GTIM",
+                "type": "S",
+                "typeDisp": "Equity"
+            },
+            {
+                "exch": "PCX",
+                "exchDisp": "NYSEArca",
+                "name": "ProShares Ultra Consumer Goods",
+                "symbol": "UGE",
+                "type": "E",
+                "typeDisp": "ETF"
+            }
+        ]
+    }
+}

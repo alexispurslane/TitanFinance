@@ -1,68 +1,64 @@
+<ul class="nav nav-pills nav-justified nav-slid-hidden" role="tablist">
+  <li role="presentation"><a href="#">Sell One</a></li>
+  <li role="presentation"><a href="#">Sell All</a></li>
+  <li role="presentation"><a href="#">Sell Some</a></li>
+  <li role="presentation"><a href="#">Buy More</a></li>
+</ul>
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
-      <ul class="nav nav-sidebar">
-        <li class="active"><a href="dashboard/">Holdings</a></li>
-        <li><a href="news/">News</a></li>
-      </ul>
+  <div>
+    <h1 class="page-header">Dashboard</h1>
+    <div class="row placeholder">
+      <div class="col-md-4 placeholder">
+        <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+        <h4>Week Earnings</h4>
+        <span class="text-muted">These are the your earnings graphed over the week.</span>
+      </div>
+      <div class="col-md-4 placeholder">
+        <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+        <h4>Quarter Earnings</h4>
+        <span class="text-muted">Your earnings graphed over the quarter.</span>
+      </div>
+      <div class="col-md-4 placeholder">
+        <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+        <h4>Year Earnings</h4>
+        <span class="text-muted">Earnings over the year.</span>
+      </div>
     </div>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      <h1 class="page-header">Dashboard</h1>
+    <h2 class="sub-header">Your holdings</h2>
+    <div class="input-group col-md-4">
+      <span class="input-group-addon glyphicon glyphicon-search"></span>
+      {{input type="search" class="form-control" id="inputSSearch" value=symbols placeholder="Enter the stock symbol..."}}
+      <span class="input-group-btn">
+        <button type="button" {{bind-attr class=":btn :btn-default :btn-inline empty:disabled"}} {{action "clear"}}><span class="glyphicon glyphicon-remove-circle"></span></button>
+      </span>
+    </div>
 
-      <div class="row placeholder">
-        <div class="col-md-4 placeholder">
-          <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-          <h4>Week Earnings</h4>
-          <span class="text-muted">These are the your earnings graphed over the week.</span>
-        </div>
-        <div class="col-md-4 placeholder">
-          <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-          <h4>Quarter Earnings</h4>
-          <span class="text-muted">Your earnings graphed over the quarter.</span>
-        </div>
-        <div class="col-md-4 placeholder">
-          <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-          <h4>Year Earnings</h4>
-          <span class="text-muted">Earnings over the year.</span>
-        </div>
-      </div>
-
-      <h2 class="sub-header">Your holdings</h2>
-
-      <div class="input-group">
-        <span class="input-group-addon glyphicon glyphicon-search"></span>
-        {{input type="search" class="form-control" id="inputSSearch" value=symbols placeholder="Enter the stock symbol..."}}
-        <span class="input-group-btn">
-          <button type="button" {{bind-attr class=":btn :btn-success :btn-inline :glyphicon :glyphicon-remove-circle empty:disabled"}} {{action "clear"}}></button>
-        </span>
-      </div>
-
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Symbol</th>
-              <th>#</th>
-              <th>Cost at Purchase</th>
-              <th>Current Cost</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each filteredSyms}}
-              <tr>
-                <td>{{symbol}}</td>
-                <td>{{number}}</td>
-                <td>{{cost}}</td>
-                <td>{{worth}}</td>
-                <td>
-                  <button class="btn btn-sm btn-success" {{action 'view'}}>view</button>
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>#</th>
+            <th>Cost at Purchase</th>
+            <th>Current Cost</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {{#each filteredSyms}}
+        <tr>
+          <td>{{symbol}}</td>
+          <td>{{number}}</td>
+          <td>{{cost}}</td>
+          <td>{{worth}}</td>
+          <td>
+            <button class="btn btn-sm btn-success glyphicon glyphicon-pencil" {{action 'view'}}></button>
+          </td>
+        </tr>
+        {{/each}}
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
+

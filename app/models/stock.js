@@ -4,6 +4,8 @@ var a = DS.attr;
 
 export default DS.Model.extend({
   symbol: a('string'),
+  name: a('string'),
+  uid: a('string'),
   number: a('number'),
   worth:  a('number'),
   cost:   a('number')

@@ -7,3 +7,12 @@ html, body {
   position: absolute;
   top: 0px;
 }
+.week {
+  fill: lightblue;
+}
+.quarter {
+  fill: lightgreen;
+}
+.year {
+  fill: lightgrey;
+}

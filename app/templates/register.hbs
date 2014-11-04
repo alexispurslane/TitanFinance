@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="signin.css">
 <div class="container">
   <form class="form-signin" role="div">
-    <h2 class="form-signin-heading">Please Sign in</h2> <h5 class="form-signin-heading">{{#link-to 'register'}}or register{{/link-to}}</h5>
+    <h2 class="form-signin-heading">Register</h2> <h5 class="form-signin-heading">{{#link-to 'signin'}}or sign in{{/link-to}}</h5>
     <div {{bind-attr class=":form-group emptyEmail:has-warning:"}}>
       {{input type="email" class="form-control" placeholder="Your email" value=email}}
       {{#if emptyEmail}}
@@ -13,6 +13,12 @@
       {{input type="password" class="form-control" placeholder="Password" value=pass}}
       {{#if emptyPass}}
         <p class="text-warning">Your password is required</p>
+      {{/if}}
+    </div>
+    <div {{bind-attr class=":form-group emptyPassConf:has-warning:"}}>
+      {{input type="password" class="form-control" placeholder="Password Confermation" value=passConf}}
+      {{#if emptyPassConf}}
+        <p class="text-warning">Your password confirmation is required</p>
       {{/if}}
     </div>
     <div class="checkbox">

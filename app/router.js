@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('help');
   this.route('search');
   this.route('signin', { path: '/' });
+  this.route('register');
 });
 
 export default Router;

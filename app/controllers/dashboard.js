@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
-export default Ember.ArrayController.extend({
+export default Ember.ObjectController.extend({
   symbols: '',
+  howMuch: [],
   clicked: 0,
   empty: function () {
     return Ember.isEmpty(this.get('symbols'));
@@ -9,26 +10,17 @@ export default Ember.ArrayController.extend({
   filteredSyms: function () {
     var symbolSearch = this.get('symbols').toLowerCase();
     if (symbolSearch  === '') {
-      return this.get('content');
+      return this.get('content').filterBy('uid', window.ref.getAuth().uid);
     } else {
-      return this.get('content').filter(function (item) {
+      return this.get('content').filterBy('uid', window.ref.getAuth().uid).filter(function (item) {
         return item.get('symbol').toLowerCase().indexOf(symbolSearch) !== -1;
       });
     }
   }.property('content', 'symbols'),
   actions: {
-    view: function () {
-      if (this.get('clicked') === 1) {
-        Ember.$('.nav-slid-hidden').animate({
-          top: '-=66'
-        }, 1000);
-        this.set('clicked', 0);
-      } else {
-        Ember.$('.nav-slid-hidden').animate({
-          top: '+=66'
-        }, 1000);
-        this.set('clicked', this.get('clicked') + 1);
-      }
+    change: function (id) {
+      this.get('.user').money -= this.get('content').stocks[id].worth * Ember.$('#'+id).val();
+      this.get('content')[id].number += Ember.$('#'+id).val();
     },
     clear: function () {
       this.set('symbols', '');

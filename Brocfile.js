@@ -17,10 +17,26 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 app.import({
-  development: 'vendor/ember-data/ember-data.js',
-  production:  'vendor/ember-data/ember-data.prod.js'
+  development: 'bower_components/ember-data/ember-data.js',
+  production:  'bower_components/ember-data/ember-data.prod.js'
 }, {
   'ember-data': [
+    'default'
+  ]
+});
+app.import({
+  development: 'bower_components/emberfire/dist/emberfire.js',
+  production: 'bower_components/emberfire/dist/emberfire.min.js',
+}, {
+  'emberfire': [
+    'default'
+  ]
+});
+app.import({
+  development: 'bower_components/firebase/firebase.js',
+  production: 'bower_components/firebase/firebase.js'
+}, {
+  'firebase': [
     'default'
   ]
 });
@@ -31,7 +47,7 @@ var extraAssets = pickFiles('bower_components/bootstrap/dist/fonts',{
     files: ['**/*'],
     destDir: '/fonts'
 });
-app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
 app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
 
 module.exports = mergeTrees([app.toTree(), extraAssets]);

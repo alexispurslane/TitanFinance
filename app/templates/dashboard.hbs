@@ -1,32 +1,31 @@
-<ul class="nav nav-pills nav-justified nav-slid-hidden" role="tablist">
-  <li role="presentation"><a href="#">Sell One</a></li>
-  <li role="presentation"><a href="#">Sell All</a></li>
-  <li role="presentation"><a href="#">Sell Some</a></li>
-  <li role="presentation"><a href="#">Buy More</a></li>
-</ul>
 <div class="container-fluid">
   <div>
     <h1 class="page-header">Dashboard</h1>
     <div class="row placeholder">
       <div class="col-md-4 placeholder">
-        <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="200px" height="200px" viewBox="0 65.326 612 502.174" enable-background="new 0 65.326 612 502.174" xml:space="preserve" class="logo">
+          <ellipse class="week" cx="300" cy="317" rx="300" ry="300"></ellipse>
+        </svg>
         <h4>Week Earnings</h4>
         <span class="text-muted">These are the your earnings graphed over the week.</span>
       </div>
       <div class="col-md-4 placeholder">
-        <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="200px" height="200px" viewBox="0 65.326 612 502.174" enable-background="new 0 65.326 612 502.174" xml:space="preserve" class="logo">
+          <ellipse class="quarter" cx="300" cy="317" rx="300" ry="300"></ellipse>
+        </svg>
         <h4>Quarter Earnings</h4>
         <span class="text-muted">Your earnings graphed over the quarter.</span>
       </div>
       <div class="col-md-4 placeholder">
-        <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="200px" height="200px" viewBox="0 65.326 612 502.174" enable-background="new 0 65.326 612 502.174" xml:space="preserve" class="logo">
+          <ellipse class="year" cx="300" cy="317" rx="300" ry="300"></ellipse>
+        </svg>
         <h4>Year Earnings</h4>
         <span class="text-muted">Earnings over the year.</span>
       </div>
     </div>
     <h2 class="sub-header">Your holdings</h2>
     <div class="input-group col-md-4">
-      <span class="input-group-addon glyphicon glyphicon-search"></span>
       {{input type="search" class="form-control" id="inputSSearch" value=symbols placeholder="Enter the stock symbol..."}}
       <span class="input-group-btn">
         <button type="button" {{bind-attr class=":btn :btn-default :btn-inline empty:disabled"}} {{action "clear"}}><span class="glyphicon glyphicon-remove-circle"></span></button>
@@ -37,7 +36,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Symbol</th>
+            <th>Name</th>
             <th>#</th>
             <th>Cost at Purchase</th>
             <th>Current Cost</th>
@@ -47,12 +46,17 @@
         <tbody>
         {{#each filteredSyms}}
         <tr>
-          <td>{{symbol}}</td>
+          <td>{{name}}</td>
           <td>{{number}}</td>
           <td>{{cost}}</td>
           <td>{{worth}}</td>
           <td>
-            <button class="btn btn-sm btn-success glyphicon glyphicon-pencil" {{action 'view'}}></button>
+            <div {{bind-attr class=":input-group :input-group-sm"}} style="width: 102px">
+              <input type="number" {{bind-attr id="id"}} class="form-control" value="0">
+              <span class="input-group-btn">
+                <button class="btn btn-sm btn-primary" {{action 'change' id}}><span class="glyphicon glyphicon-edit"></span></button>
+              </span>
+            </div><!-- /input-group -->
           </td>
         </tr>
         {{/each}}

@@ -16,3 +16,11 @@ html, body {
 .year {
   fill: lightgrey;
 }
+
+#img {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-top: -100px; /* Half the height */
+   margin-left: -100px; /* Half the width */
+}

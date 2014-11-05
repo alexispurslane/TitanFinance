@@ -10,11 +10,12 @@ export default Ember.Controller.extend({
         size = this.get('size');
 
     return 'http://www.gravatar.com/avatar/' + hex_md5(email) + '?s=' + size;
-  }.property('user', 'size'),
+  }.property('size'),
   actions: {
     logout: function () {
       localStorage.signedIn = false;
       window.ref.unauth();
+      this.set('signedIn', false);
       this.transitionTo('signin');
     }
   }

@@ -25,10 +25,12 @@ export default Ember.ObjectController.extend({
           console.log(authData.auth);
           localStorage.signedIn = true;
           self.transitionToRoute('dashboard');
+          this.set('signedIn', true);
         } else {
           self.set('error', 'There was error authenticating you: ' + error.message);
           console.log(error);
           localStorage.signedIn = false;
+          this.set('signedIn', false);
         }
       }, {
         remember: this.get('typeOfSession')

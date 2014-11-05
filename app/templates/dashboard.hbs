@@ -43,9 +43,10 @@
     </div>
     <h2 class="sub-header">Your holdings</h2>
     <div class="input-group col-md-4">
-      {{input type="search" class="form-control" id="inputSSearch" value=symbols placeholder="Enter the stock symbol..."}}
+    {{input type="search" classBinding=":form-control empty:expand:de-expand" id="inputSSearch" value=symbols placeholder="Enter the stock symbol..."}}
+
       <span class="input-group-btn">
-        <button type="button" {{bind-attr class=":btn :btn-default :btn-inline empty:disabled"}} {{action "clear"}}><span class="glyphicon glyphicon-remove-circle"></span></button>
+        <button type="button" {{bind-attr class=":btn :close-icon :btn-default :btn-inline empty:hideded:showed"}} {{action "clear"}}><span class="glyphicon glyphicon-remove-circle"></span></button>
       </span>
     </div>
 

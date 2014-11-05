@@ -24,3 +24,23 @@ html, body {
    margin-top: -100px; /* Half the height */
    margin-left: -100px; /* Half the width */
 }
+.expand {
+  transition: width 0.5s ease;
+  width: 200px !important;
+}
+.expand:focus {
+  transition: width 0.5s ease;
+  width: 424px !important;
+}
+.de-expand {
+  transition: width 0.5s ease;
+  width: 424px !important;
+}
+.hideded {
+  transition: opacity 0.5s ease;
+  opacity: 0 !important;
+}
+.showed {
+  transition: opacity 0.5s ease;
+  opacity: 1 !important;
+}

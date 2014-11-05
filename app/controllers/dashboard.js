@@ -8,7 +8,9 @@ export default Ember.ObjectController.extend({
     return Ember.isEmpty(this.get('symbols'));
   }.property('symbols'),
   filteredStocks: function () {
-    return this.get('content').stocks.filterBy('uid', window.ref.getAuth().uid);
+    return this.get('content').stocks.filterBy('uid', window.ref.getAuth().uid).filter(function (item) {
+      return item.get('number') > 0;
+    });
   }.property(),
   user: function () {
     var self = this;
@@ -30,25 +32,38 @@ export default Ember.ObjectController.extend({
   }.property('content', 'symbols'),
   actions: {
     change: function (id) {
-      console.log(this.get('it'));
-      var user = this.get('user');
-      var stock = this.get('filteredStocks')[id],
-          value = Ember.$('#'+id).val();
-      console.log(this.get('it'));
-      window.ref.child('users').child(this.get('it')).set({
-        money: user.get('money') - stock.get('worth') * parseInt(value),
-        uid: user.get('uid')
-      });
-      console.log(this.get('it'));
-      window.ref.child('stocks').child(id).set({
-        number: stock.get('number') + parseInt(value),
-        uid: window.ref.getAuth().uid,
-        name: stock.get('name'),
-        symbol: stock.get('symbol'),
-        worth: stock.get('worth'),
-        cost: stock.get('cost')
-      });
-      console.log(this.get('it'));
+      var user = this.get('user'),
+      stock = this.get('filteredStocks')[id],
+      value = Ember.$('#'+id).val(),
+      newMoney = user.get('money') - stock.get('worth') * parseInt(value),
+      newStocks = stock.get('number') + parseInt(value),
+      m;
+      try {
+        if (newMoney < 0) {
+          throw new Error('You cannot buy that many stocks, because you would go negative.');
+        } else if (newStocks < 0) {
+          throw new Error('You cannot sell that many stocks, because you don\'t have that many.');
+        }
+
+        window.ref.child('users').child(this.get('it')).set({
+          money: newMoney,
+          uid: user.get('uid')
+        });
+        window.ref.child('stocks').child(id).set({
+          number: newStocks,
+          uid: window.ref.getAuth().uid,
+          name: stock.get('name'),
+          symbol: stock.get('symbol'),
+          worth: stock.get('worth'),
+          cost: stock.get('cost')
+        });
+      } catch (e) {
+        m = e.message || 'There was an error.';
+        this.set('error', m);
+      } finally {
+        m = 'You have successfully ' + (parseInt(value) < 0? 'sold' : 'bought') + ' ' + Math.abs(parseInt(value)) + ' stocks.';
+        this.set('success', m);
+      }
     },
     clear: function () {
       this.set('symbols', '');

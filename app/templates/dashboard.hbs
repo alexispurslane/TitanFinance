@@ -17,26 +17,17 @@
     <h1 class="page-header">Dashboard</h1>
     <div class="row placeholder">
       <div class="col-md-4 placeholder">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="200px" height="200px" viewBox="0 65.326 612 502.174" enable-background="new 0 65.326 612 502.174" xml:space="preserve" class="logo">
-          <ellipse class="week" cx="300" cy="317" rx="300" ry="300"></ellipse>
-          <text x="207" y="344" font-family="sans-serif" font-size="90px" fill="white">{{wIncrease}}%</text>
-        </svg>
+        <canvas id="week" width="300" height="300">
         <h4>Week Earnings</h4>
         <span class="text-muted">These are the your earnings graphed over the week.</span>
       </div>
       <div class="col-md-4 placeholder">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="200px" height="200px" viewBox="0 65.326 612 502.174" enable-background="new 0 65.326 612 502.174" xml:space="preserve" class="logo">
-          <ellipse class="quarter" cx="300" cy="317" rx="300" ry="300"></ellipse>
-          <text x="207" y="344" font-family="sans-serif" font-size="90px" fill="white">{{qIncrease}}%</text>
-        </svg>
+        <canvas id="quart" width="300" height="300">
         <h4>Quarter Earnings</h4>
         <span class="text-muted">Your earnings graphed over the quarter.</span>
       </div>
       <div class="col-md-4 placeholder">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="200px" height="200px" viewBox="0 65.326 612 502.174" enable-background="new 0 65.326 612 502.174" xml:space="preserve" class="logo">
-          <ellipse class="year" cx="300" cy="317" rx="300" ry="300"></ellipse>
-          <text x="207" y="344" font-family="sans-serif" font-size="90px" fill="white">{{yIncrease}}%</text>
-        </svg>
+        <canvas id="year" width="300" height="300">
         <h4>Year Earnings</h4>
         <span class="text-muted">Earnings over the year.</span>
       </div>
@@ -83,4 +74,9 @@
     </div>
   </div>
 </div>
+<div id="cw" class="hidden">{{changedWeek}}</div>
+<div id="cq" class="hidden">{{changedQuart}}</div>
+<div id="cy" class="hidden">{{changedYear}}</div>
+<script>
 
+</script>

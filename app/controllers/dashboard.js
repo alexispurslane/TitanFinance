@@ -4,6 +4,18 @@ export default Ember.ObjectController.extend({
   symbols: '',
   howMuch: [],
   clicked: 0,
+  weekEarnings: 1120,
+  quartEarnings: 1120,
+  yearEarnings: 1120,
+  changedWeek: function () {
+    return Math.abs(Math.floor((((this.get('user').get('money')-this.get('weekEarnings')) - this.get('user').get('money')) / ((this.get('user').get('money')-this.get('weekEarnings')))) * 100));
+  }.property('user.money', 'weekEarnings'),
+  changedQuart: function () {
+    return Math.abs(Math.floor((((this.get('user').get('money')-this.get('weekEarnings')) - this.get('user').get('money')) / ((this.get('user').get('money')-this.get('quartEarnings')))) * 100));
+  }.property('user.money', 'quartEarnings'),
+  changedYear: function () {
+    return Math.abs(Math.floor((((this.get('user').get('money')-this.get('weekEarnings')) - this.get('user').get('money')) / ((this.get('user').get('money')-this.get('quartEarnings')))) * 100));
+  }.property('user.money', 'yearEarnings'),
   empty: function () {
     return Ember.isEmpty(this.get('symbols'));
   }.property('symbols'),
@@ -67,6 +79,6 @@ export default Ember.ObjectController.extend({
     },
     clear: function () {
       this.set('symbols', '');
-    }
+    },
   }
 });

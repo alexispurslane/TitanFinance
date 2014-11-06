@@ -3,16 +3,19 @@
   <div class="row">
     <div class="col-lg-6">
       <div class="input-group">
-        {{input type="search" class="form-control" id="inputSearch" value=symbol placeholder="Enter the stock symbol..." action="search"}}
+        {{input type="search" classBinding=":form-control empty:expand:de-expand" name="inputSearch" value=symbol placeholder="Enter the stock symbol..." action="search"}}
         <span class="input-group-btn">
-          <button type="button" {{bind-attr class=":btn :btn-primary :btn-inline empty:disabled"}} {{action "search"}}>Go</button>
+          <button type="button" {{bind-attr class=":btn :btn-primary :btn-inline empty:hideded:showed"}} {{action "search"}}>
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
         </span>
       </div><!-- /input-group -->
       <br/>
       {{#each flist}}
-      <div class="panel panel-default">
+      {{#with _data}}
+      <div class="panel panel-primary">
         <div class="panel-heading">
-          <h3 class="panel-title">Search Result {{id}}: {{symbol}}</h3>
+          <h3 class="panel-title">Search Result {{id}}: {{Symbol}}</h3>
         </div>
         <div class="list-group">
           <div class="list-group-item">
@@ -20,33 +23,34 @@
               <i class="icon-file-pdf"></i>
             </a>
             <h4 class="list-group-item-heading">
-              <a>
-                {{name}}
+              <a href="{{unbound [Summary Quote]}}">
+                {{Name}}
               </a>
             </h4>
-            <p class="list-group-item-text"><strong>${{cost}}</strong></p>
+            <p class="list-group-item-text"><strong>${{LastSale}}</strong></p>
           </div>
         </div>
         <div class="panel-footer">
-          {{input type="number" class="form-control" value=amount placeholder="Amount..."}}
+          {{input type="number" pattern="\d+" class="form-control" value=amount placeholder="Amount..."}}
           <div class="btn-group btn-group-justified">
             <div class="btn-group">
               <button class="btn btn-primary">
                 Buy
               </button>
             </div>
-            <div class="btn-group">
-              <button class="btn btn-primary">
-                Sell
-              </button>
-            </div>
           </div>
         </div>
       </div>
+      {{/with}}
       {{/each}}
-      <script>
-              </script>
-
     </div><!-- /.col-lg-6 -->
   </div><!-- /.row -->
+  {{#if symbol}}
+  <nav>
+    <ul class="pager">
+      <li {{bind-attr class=":previous canPrev::disabled"}}><a {{action 'prev'}} href="#inputSearch">&larr; Previous Page</a></li>
+      <li {{bind-attr class=":next canNext::disabled"}}><a {{action 'next'}} href="#inputSearch">Next Page &rarr;</a></li>
+    </ul>
+  </nav>
+  {{/if}}
 </div>

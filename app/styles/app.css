@@ -8,13 +8,13 @@ html, body {
   top: 0px;
 }
 .week {
-  fill: lightblue;
+  fill: #3fb618;
 }
 .quarter {
-  fill: lightgreen;
+  fill: #fe6600;
 }
 .year {
-  fill: lightgrey;
+  fill: #8d46b0;
 }
 
 #img {
@@ -26,15 +26,15 @@ html, body {
 }
 .expand {
   transition: width 0.5s ease;
-  width: 200px !important;
+  width: 50% !important;
 }
 .expand:focus {
   transition: width 0.5s ease;
-  width: 424px !important;
+  width: 100% !important;
 }
 .de-expand {
   transition: width 0.5s ease;
-  width: 424px !important;
+  width: 100% !important;
 }
 .hideded {
   transition: opacity 0.5s ease;
@@ -43,4 +43,10 @@ html, body {
 .showed {
   transition: opacity 0.5s ease;
   opacity: 1 !important;
+}
+.previous {
+  cursor: pointer;
+}
+.next {
+  cursor: pointer;
 }

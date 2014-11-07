@@ -4,6 +4,35 @@ export default Ember.ObjectController.extend({
   symbols: '',
   howMuch: [],
   clicked: 0,
+  options: {
+    // whether to hide the notification on click
+    clickToHide: true,
+    // whether to auto-hide the notification
+    autoHide: true,
+    // if autoHide, hide after milliseconds
+    autoHideDelay: 4000,
+    // show the arrow pointing at the element
+    arrowShow: true,
+    // arrow size in pixels
+    arrowSize: 5,
+    // default positions
+    elementPosition: 'bottom left',
+    globalPosition: 'top',
+    // default style
+    style: 'metro',
+    // default class (string or [string])
+    className: 'error',
+    // show animation
+    showAnimation: 'slideDown',
+    // show animation duration
+    showDuration: 400,
+    // hide animation
+    hideAnimation: 'slideRight',
+    // hide animation duration
+    hideDuration: 200,
+    // padding between element and notification
+    gap: 4
+  },
   weekEarnings: 1120,
   quartEarnings: 1120,
   yearEarnings: 1120,
@@ -72,9 +101,19 @@ export default Ember.ObjectController.extend({
       } catch (e) {
         m = e.message || 'There was an error.';
         this.set('error', m);
+        $.notify({
+          title: 'Error: ',
+          text: m
+        }, this.get('options'));
       } finally {
         m = 'You have successfully ' + (parseInt(value) < 0? 'sold' : 'bought') + ' ' + Math.abs(parseInt(value)) + ' stocks.';
         this.set('success', m);
+        this.get('options').className = 'success';
+        $.notify({
+          title: 'Success! ',
+          text: m
+        }, this.get('options'));
+        this.get('options').className = 'error';
       }
     },
     clear: function () {

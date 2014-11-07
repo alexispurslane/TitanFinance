@@ -12,7 +12,6 @@
       </div><!-- /input-group -->
       <br/>
       {{#each flist}}
-      {{#with _data}}
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">Search Result {{id}}: {{Symbol}}</h3>
@@ -24,33 +23,36 @@
             </a>
             <h4 class="list-group-item-heading">
               <a href="{{unbound [Summary Quote]}}">
-                {{Name}}
+                {{Name}} &nbsp; &nbsp; <span class="badge badge-lg badge-primary">{{industry}} ({{Sector}})</span>
               </a>
             </h4>
-            <p class="list-group-item-text"><strong>${{LastSale}}</strong></p>
+            <p class="list-group-item-text"><h3><strong>${{LastSale}}</strong></h3></p>
+            <p class="list-group-item-text"><strong>Initial Public Offering year: {{IPOyear}}</strong></p>
+            <p class="list-group-item-text"><strong>Market cap: ${{MarketCap}}</strong></p>
           </div>
         </div>
         <div class="panel-footer">
-          {{input type="number" pattern="\d+" class="form-control" value=amount placeholder="Amount..."}}
+          <input type="number" pattern="\d+" {{bind-attr id="id"}} class="form-control" value="0" placeholder="Amount...">
           <div class="btn-group btn-group-justified">
             <div class="btn-group">
-              <button class="btn btn-primary">
+              <button {{action 'buy' id}} class="btn btn-primary">
                 Buy
               </button>
             </div>
           </div>
         </div>
       </div>
-      {{/with}}
       {{/each}}
     </div><!-- /.col-lg-6 -->
   </div><!-- /.row -->
-  {{#if symbol}}
   <nav>
     <ul class="pager">
-      <li {{bind-attr class=":previous canPrev::disabled"}}><a {{action 'prev'}} href="#inputSearch">&larr; Previous Page</a></li>
-      <li {{bind-attr class=":next canNext::disabled"}}><a {{action 'next'}} href="#inputSearch">Next Page &rarr;</a></li>
+      <li {{bind-attr class=":previous canPrev::disabled"}}>
+        <a {{action 'prev'}} {{bind-attr class="canPrev:showed:hideded"}} href="#inputSearch">&larr; Previous Page</a>
+      </li>
+      <li {{bind-attr class=":next canNext::disabled"}}>
+        <a {{action 'next'}} {{bind-attr class="canNext:showed:hideded"}} href="#inputSearch">Next Page &rarr;</a>
+      </li>
     </ul>
   </nav>
-  {{/if}}
 </div>

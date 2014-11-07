@@ -29,16 +29,20 @@
           <ul class="dropdown-menu" role="menu">
             {{#link-to 'profile' tagName="li" href=false}}
               {{#link-to 'profile' bubbles=false}}
+                <span class="glyphicon glyphicon-user"></span>
                 Profile
               {{/link-to}}
             {{/link-to}}
             {{#link-to 'settings' tagName="li" href=false}}
               {{#link-to 'settings' bubbles=false}}
+                <span class="glyphicon glyphicon-cog"></span>
                 Profile Settings
               {{/link-to}}
             {{/link-to}}
             <li class="divider"></li>
-            <li class="dropdown-danger"><a href="#" {{action 'logout'}}>Log out</a></li>
+            <li class="dropdown-danger"><a href="#" {{action 'logout'}}>
+              <span class="glyphicon glyphicon-share"></span>
+              Log out</a></li>
           </ul>
         </li>
     </ul>

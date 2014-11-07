@@ -50,3 +50,28 @@ html, body {
 .next {
   cursor: pointer;
 }
+.panel-grow-start {
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+}
+.notifyjs-metro-base .title {
+  font-size: 15px;
+  font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
+  color: #ffffff;
+  line-height: 1.42857143;
+}
+.notifyjs-metro-base .text {
+  font-weight: 100 !important;
+  font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
+  color: #ffffff;
+  line-height: 1.42857143;
+}
+.notifyjs-metro-base {
+  background-color: #ff0039;
+  border-color: #f0005e;
+  color: #ffffff;
+  font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
+  font-size: 15px;
+  line-height: 1.42857143;
+}

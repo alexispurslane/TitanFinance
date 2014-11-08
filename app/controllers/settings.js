@@ -24,7 +24,7 @@ export default Ember.ArrayController.extend({
         password : prompt('Confirm with password.')
       }, function(error) {
         if (error === null) {
-          var n = new PNotify({
+          new PNotify({
             title: 'DANGER ACCEPTED',
             text: 'You have successfully deleted your account on TitanFinance.',
             icon: 'glyphicon glyphicon-success',
@@ -32,7 +32,7 @@ export default Ember.ArrayController.extend({
             animation: 'slide',
             nonblock: {
               nonblock: true,
-              nonblock_opacity: .2
+              nonblock_opacity: 0.2
             },
             shadow: false
           });
@@ -42,7 +42,7 @@ export default Ember.ArrayController.extend({
           this.transitionTo('signin');
           window.location = "/";
         } else {
-          var n = new PNotify({
+          new PNotify({
             title: 'DANGER CANCELED',
             text: 'Either you hit cancel or you typed an incorrect password.',
             icon: 'glyphicon glyphicon-warning-sign',
@@ -50,7 +50,7 @@ export default Ember.ArrayController.extend({
             animation: 'slide',
             nonblock: {
               nonblock: true,
-              nonblock_opacity: .2
+              nonblock_opacity: 0.2
             },
             shadow: false
           });

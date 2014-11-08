@@ -3,7 +3,9 @@
     "document": true,
     "window": true,
     "-Promise": true,
-    "TitanFinanceENV": true
+    "TitanFinanceENV": true,
+    "hex_md5": true,
+    "PNotify": true
   },
   "browser" : true,
   "boss" : true,

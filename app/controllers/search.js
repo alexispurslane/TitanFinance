@@ -101,7 +101,7 @@ export default Ember.ObjectController.extend({
       } catch (e) {
         m = e.message || 'There was an error.';
         this.set('error', m);
-        var n = new PNotify({
+        new PNotify({
           title: 'Error',
           text: m,
           icon: 'glyphicon glyphicon-warning-sign',
@@ -109,7 +109,7 @@ export default Ember.ObjectController.extend({
           animation: 'slide',
           nonblock: {
             nonblock: true,
-            nonblock_opacity: .2
+            nonblock_opacity: 0.2
           },
           shadow: false
         });
@@ -117,7 +117,7 @@ export default Ember.ObjectController.extend({
       } if (!catched) {
         m = 'You have successfully bought ' + (parseInt(value)) + ' stocks.';
         this.set('success', m);
-        var n = new PNotify({
+        new PNotify({
           title: 'Success',
           text: m,
           icon: 'glyphicon glyphicon-ok-circle',
@@ -125,7 +125,7 @@ export default Ember.ObjectController.extend({
           animation: 'slide',
           nonblock: {
             nonblock: true,
-            nonblock_opacity: .2
+            nonblock_opacity: 0.2
           },
           shadow: false
         });

@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   signedIn: function () {
-    return JSON.parse(localStorage.signedIn);
+    return JSON.parse(localStorage.signedIn || false);
   }.property(),
   size: 20,
   gravatarUrl: function() {

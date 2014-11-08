@@ -8,11 +8,11 @@ export default Ember.ObjectController.extend({
   place: 0,
   options: {
     // whether to hide the notification on click
-    clickToHide: true,
+    clickToHide: false,
     // whether to auto-hide the notification
     autoHide: true,
     // if autoHide, hide after milliseconds
-    autoHideDelay: 5000,
+    autoHideDelay: 4000,
     // show the arrow pointing at the element
     arrowShow: true,
     // arrow size in pixels
@@ -73,7 +73,8 @@ export default Ember.ObjectController.extend({
       value = Ember.$('#'+id).val(),
       newMoney = user.get('money') - stock.get('LastSale') * parseInt(value),
       newStocks = parseInt(value),
-      m;
+      m,
+      catched;
       try {
         if (newMoney < 0) {
           throw new Error('You cannot buy that many stocks, because you would go negative.');
@@ -85,7 +86,10 @@ export default Ember.ObjectController.extend({
           money: newMoney,
           uid: user.get('uid')
         });
-        window.ref.child('stocks').push({
+        var length;
+        window.ref.child('stocks').on('value', function (s) { length = Ember.keys(s.val()).length; });
+        var createdStock = this.store.createRecord('stock', {
+          th: length,
           number: newStocks,
           uid: window.ref.getAuth().uid,
           name: stock.get('Name'),
@@ -93,22 +97,38 @@ export default Ember.ObjectController.extend({
           worth: stock.get('LastSale'),
           cost: stock.get('LastSale')
         });
+        createdStock.save();
       } catch (e) {
         m = e.message || 'There was an error.';
         this.set('error', m);
-        $.notify({
-          title: 'Error: ',
-          text: m
-        }, this.get('options'));
-      } finally {
+        var n = new PNotify({
+          title: 'Error',
+          text: m,
+          icon: 'glyphicon glyphicon-warning-sign',
+          type: 'error',
+          animation: 'slide',
+          nonblock: {
+            nonblock: true,
+            nonblock_opacity: .2
+          },
+          shadow: false
+        });
+        catched = true;
+      } if (!catched) {
         m = 'You have successfully bought ' + (parseInt(value)) + ' stocks.';
         this.set('success', m);
-        this.get('options').className = 'success';
-        $.notify({
-          title: 'Success! ',
-          text: m
-        }, this.get('options'));
-        this.get('options').className = 'error';
+        var n = new PNotify({
+          title: 'Success',
+          text: m,
+          icon: 'glyphicon glyphicon-ok-circle',
+          type: 'success',
+          animation: 'slide',
+          nonblock: {
+            nonblock: true,
+            nonblock_opacity: .2
+          },
+          shadow: false
+        });
       }
     },
     next: function () {

@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-lg-6">
       <div class="input-group">
-        {{input type="search" classBinding=":form-control empty:expand:de-expand" name="inputSearch" value=symbol placeholder="Enter the stock symbol..." action="search"}}
+        {{input type="search" classBinding=":form-control empty:expand:de-expand" name="inputSearch" value=symbol autofocus="autofocus" placeholder="Enter the stock symbol..." action="search"}}
         <span class="input-group-btn">
           <button type="button" {{bind-attr class=":btn :btn-primary :btn-inline empty:hideded:showed"}} {{action "search"}}>
             <span class="glyphicon glyphicon-search"></span>

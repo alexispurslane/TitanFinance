@@ -41,6 +41,10 @@ export default Ember.ObjectController.extend({
       }, function(error, authData) {
         if (error === null) {
           console.log('User ID: ' + authData.uid + ', Provider: ' + authData.provider);
+          window.ref.child('users').push({
+            uid: authData.uid,
+            money: 10000
+          });
           self.transitionToRoute('dashboard');
           localStorage.signedIn = true;
         } else {

@@ -33,9 +33,39 @@ export default Ember.ObjectController.extend({
     // padding between element and notification
     gap: 4
   },
-  weekEarnings: 1120,
-  quartEarnings: 1120,
-  yearEarnings: 1120,
+  weekEarnings: function () {
+    var date1 = new Date(localStorage.weekDate) || new Date('5/6/2011');
+    var date2 = new Date();
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    if (diffDays >= 7) {
+      localStorage.weekDate = date2;
+      this.set('week', this.get('user').get('money') - 10000);
+    }
+    return this.get('week');
+  }.property(),
+  quartEarnings: function () {
+    var date1 = new Date(localStorage.quartDate) || new Date('5/6/2011');
+    var date2 = new Date();
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    if (diffDays >= 365.242/4) {
+      localStorage.weekDate = date2;
+      this.set('week', this.get('user').get('money') - 10000);
+    }
+    return this.get('week');
+  }.property(),
+  yearEarnings: function () {
+    var date1 = new Date(localStorage.yearDate) || new Date('5/6/2011');
+    var date2 = new Date();
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    if (diffDays >= 365.242) {
+      localStorage.weekDate = date2;
+      this.set('year', this.get('user').get('money') - 10000);
+    }
+    return this.get('year');
+  }.property(),
   changedWeek: function () {
     return Math.abs(Math.floor((((this.get('user').get('money')-this.get('weekEarnings')) - this.get('user').get('money')) / ((this.get('user').get('money')-this.get('weekEarnings')))) * 100));
   }.property('user.money', 'weekEarnings'),
@@ -52,15 +82,12 @@ export default Ember.ObjectController.extend({
     return this.get('content').stocks.filterBy('uid', window.ref.getAuth().uid).filter(function (item) {
       return item.get('number') > 0;
     });
-  }.property(),
+  }.property('content.stocks.@each'),
   user: function () {
-    var self = this;
     return this.get('content').user.filter(function (e) {
-      self.set('it', self.get('content').user.indexOf(e));
-      console.log(self.get('it'));
       return e.get('uid') === window.ref.getAuth().uid;
     })[0];
-  }.property(),
+  }.property('content.user.@each'),
   filteredSyms: function () {
     var symbolSearch = this.get('symbols').toLowerCase();
     if (symbolSearch  === '') {
@@ -70,15 +97,16 @@ export default Ember.ObjectController.extend({
         return item.get('symbol').toLowerCase().indexOf(symbolSearch) !== -1;
       });
     }
-  }.property('content', 'symbols'),
+  }.property('filteredStocks.@each', 'symbols'),
   actions: {
     change: function (id) {
       var user = this.get('user'),
-      stock = this.get('filteredStocks')[id],
+      stock = this.get('filteredStocks').filterBy('th', id)[0],
       value = Ember.$('#'+id).val(),
       newMoney = user.get('money') - stock.get('worth') * parseInt(value),
       newStocks = stock.get('number') + parseInt(value),
-      m;
+      m,
+      catched;
       try {
         if (newMoney < 0) {
           throw new Error('You cannot buy that many stocks, because you would go negative.');
@@ -86,12 +114,13 @@ export default Ember.ObjectController.extend({
           throw new Error('You cannot sell that many stocks, because you don\'t have that many.');
         }
 
-        window.ref.child('users').child(this.get('it')).set({
+        window.ref.child('users').child(this.get('content').user.indexOf(user)).set({
           money: newMoney,
           uid: user.get('uid')
         });
-        window.ref.child('stocks').child(id).set({
+        window.ref.child('stocks').child(stock.get('id')).set({
           number: newStocks,
+          th: stock.get('th'),
           uid: window.ref.getAuth().uid,
           name: stock.get('name'),
           symbol: stock.get('symbol'),
@@ -101,19 +130,34 @@ export default Ember.ObjectController.extend({
       } catch (e) {
         m = e.message || 'There was an error.';
         this.set('error', m);
-        $.notify({
-          title: 'Error: ',
-          text: m
-        }, this.get('options'));
-      } finally {
+        var n = new PNotify({
+          title: 'Error',
+          text: m,
+          icon: 'glyphicon glyphicon-warning-sign',
+          type: 'error',
+          animation: 'slide',
+          nonblock: {
+            nonblock: true,
+            nonblock_opacity: .2
+          },
+          shadow: false
+        });
+        catched = true;
+      } if (!catched) {
         m = 'You have successfully ' + (parseInt(value) < 0? 'sold' : 'bought') + ' ' + Math.abs(parseInt(value)) + ' stocks.';
         this.set('success', m);
-        this.get('options').className = 'success';
-        $.notify({
-          title: 'Success! ',
-          text: m
-        }, this.get('options'));
-        this.get('options').className = 'error';
+        var n = new PNotify({
+          title: 'Success',
+          text: m,
+          icon: 'glyphicon glyphicon-ok-circle',
+          type: 'success',
+          animation: 'slide',
+          nonblock: {
+            nonblock: true,
+            nonblock_opacity: .2
+          },
+          shadow: false
+        });
       }
     },
     clear: function () {

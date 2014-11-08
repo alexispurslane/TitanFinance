@@ -58,12 +58,17 @@ body {
 .nav-sidebar > li > a {
   padding-right: 20px;
   padding-left: 20px;
+  color: #fff;
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
   color: #fff;
-  background-color: #00ab7f;
+  background-color: #090909;
+}
+.nav-sidebar > li > h3 {
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 
@@ -105,4 +110,9 @@ body {
 }
 .btn-inline {
   display: inline;
+}
+.nav>li>a:hover, .nav>li>a:focus {
+  text-decoration: none;
+  background-color: #090909;
+  color: #fff;
 }

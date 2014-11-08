@@ -8,5 +8,6 @@ export default DS.Model.extend({
   uid: a('string'),
   number: a('number'),
   worth:  a('number'),
-  cost:   a('number')
+  cost:   a('number'),
+  th: a('number')
 });

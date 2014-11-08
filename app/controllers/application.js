@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
       localStorage.signedIn = false;
       window.ref.unauth();
       this.set('signedIn', false);
-      this.transitionTo('signin');
+      this.transitionToRoute('signin');
     }
   }
 });

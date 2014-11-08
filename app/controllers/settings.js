@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.ArrayController.extend({
   actions: {
     ok: function () {
-      ref.changePassword({
+      window.ref.changePassword({
         email       : window.ref.getAuth().password.email,
         oldPassword : this.get('oldPassword'),
         newPassword : this.get('password')
@@ -19,7 +19,7 @@ export default Ember.ArrayController.extend({
 
     },
     delete: function () {
-      ref.removeUser({
+      window.ref.removeUser({
         email    : window.ref.getAuth().password.email,
         password : prompt('Confirm with password.')
       }, function(error) {

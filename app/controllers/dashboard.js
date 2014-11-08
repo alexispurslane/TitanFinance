@@ -114,7 +114,7 @@ export default Ember.ObjectController.extend({
           throw new Error('You cannot sell that many stocks, because you don\'t have that many.');
         }
 
-        window.ref.child('users').child(this.get('content').user.indexOf(user)).set({
+        window.ref.child('users').child(window.ref.getAuth().uid).set({
           money: newMoney,
           uid: user.get('uid')
         });

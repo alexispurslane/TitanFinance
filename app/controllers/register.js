@@ -29,6 +29,7 @@ export default Ember.ObjectController.extend({
         password : this.get('pass')
       }, function(error) {
         if (error === null) {
+
         } else {
           self.set('error', 'There was error registering you: ' + error.message);
           console.log(error);
@@ -41,8 +42,8 @@ export default Ember.ObjectController.extend({
       }, function(error, authData) {
         if (error === null) {
           console.log('User ID: ' + authData.uid + ', Provider: ' + authData.provider);
-          window.ref.child('users').push({
-            uid: authData.uid,
+          var userRef = window.ref.child('users').child(window.ref.getAuth().uid).set({
+            uid: window.ref.getAuth().uid,
             money: 10000
           });
           self.transitionToRoute('dashboard');

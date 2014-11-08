@@ -82,7 +82,7 @@ export default Ember.ObjectController.extend({
           throw new Error('You cannot buy that many stocks, because you can\'t buy negitive amounts.');
         }
 
-        window.ref.child('users').child(user.get('id')).set({
+        window.ref.child('users').child(window.ref.getAuth().uid).set({
           money: newMoney,
           uid: user.get('uid')
         });

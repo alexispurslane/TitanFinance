@@ -127,6 +127,7 @@ export default Ember.ObjectController.extend({
           worth: stock.get('worth'),
           cost: stock.get('cost')
         });
+        [].concat(Ember.$('td input')).forEach(function (e) { e.val(0); });
       } catch (e) {
         m = e.message || 'There was an error.';
         this.set('error', m);

@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.ArrayController.extend({
   user: function () {
     var nuser = this.get('content').filterBy('uid', window.ref.getAuth().uid)[0];
+    nuser.money = nuser.money.toFixed(2);
     nuser.email = window.ref.getAuth().password.email;
     return nuser;
   }.property(),

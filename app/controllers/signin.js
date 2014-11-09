@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
+  needs: ['application'],
   email: '',
   pass: '',
   error: '',
@@ -24,13 +25,20 @@ export default Ember.ObjectController.extend({
         if (error === null) {
           console.log(authData.auth);
           localStorage.signedIn = true;
+          if (window.firstSignIn === true) {
+            window.firstSignIn = false;
+            window.ref.child('users').child(window.ref.getAuth().uid).set({
+              money: 10000,
+              uid: window.ref.getAuth().uid
+            });
+          }
+          self.get('controllers.application').set('signedIn', true);
           self.transitionToRoute('dashboard');
-          this.set('signedIn', true);
         } else {
           self.set('error', 'There was error authenticating you: ' + error.message);
           console.log(error);
           localStorage.signedIn = false;
-          this.set('signedIn', false);
+          self.get('controllers.application').set('signedIn', false);
         }
       }, {
         remember: this.get('typeOfSession')

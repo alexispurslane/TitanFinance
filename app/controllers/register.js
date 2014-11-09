@@ -29,34 +29,13 @@ export default Ember.ObjectController.extend({
         password : this.get('pass')
       }, function(error) {
         if (error === null) {
-
+          window.firstSignIn = true;
+          self.transitionToRoute('signin');
         } else {
           self.set('error', 'There was error registering you: ' + error.message);
           console.log(error);
         }
       });
-      // Sign the user in now...
-      window.ref.authWithPassword({
-        email    : this.get('email'),
-        password : this.get('pass')
-      }, function(error, authData) {
-        if (error === null) {
-          console.log('User ID: ' + authData.uid + ', Provider: ' + authData.provider);
-          var userRef = window.ref.child('users').child(window.ref.getAuth().uid).set({
-            uid: window.ref.getAuth().uid,
-            money: 10000
-          });
-          self.transitionToRoute('dashboard');
-          localStorage.signedIn = true;
-        } else {
-          self.set('error', 'There was error authenticating you: ' + error.message);
-          console.log(error);
-          localStorage.signedIn = false;
-        }
-      }, {
-        remember: this.get('typeOfSession')
-      });
-
     }
   }
 });
